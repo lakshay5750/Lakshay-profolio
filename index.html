@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lakshay Varshney - Portfolio</title>
+    <!-- Favicon -->
+    <link rel="icon" href="https://placehold.co/32x32/1e293b/ffffff?text=LV" type="image/x-icon">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #121212; /* Deep charcoal background */
+            color: #e2e8f0; /* Light text for contrast */
+            cursor: none; /* Hide the default cursor */
+        }
+        .section-header {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #d1d5db; /* A slightly lighter header color */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        /* Custom pattern background for the body, now a subtle dark gray pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%2364748b' fill-opacity='0.15'%3E%3Cpath fill-rule='evenodd' d='M0 10l5-5 5 5-5 5-5-5zm10 0l5-5 5 5-5 5-5-5z'/%3E%3C/g%3E%3C/svg%3E");
+            background-repeat: repeat;
+            opacity: 0.1;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .timeline {
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background-color: #4a5568; /* A darker gray for the line */
+            z-index: -1;
+        }
+
+        @media (min-width: 768px) {
+            .timeline::before {
+                left: 2px;
+            }
+        }
+
+        /* Custom neon button styles */
+        .neon-button {
+            border: 2px solid #06B6D4; /* Tailwind's teal-500 */
+            color: #06B6D4;
+            background-color: transparent;
+            border-radius: 9999px; /* rounded-full */
+            text-shadow: 0 0 5px #06B6D4, 0 0 10px #06B6D4;
+            box-shadow: 0 0 5px rgba(6, 182, 212, 0.5);
+            transition: all 0.3s ease-in-out;
+            font-weight: 600;
+            padding-left: 1rem; /* px-4 */
+            padding-right: 1rem; /* px-4 */
+            padding-top: 0.5rem; /* py-2 */
+            padding-bottom: 0.5rem; /* py-2 */
+        }
+        .neon-button:hover {
+            background-color: #06B6D4;
+            color: white;
+            text-shadow: none;
+            box-shadow: 0 0 10px #06B6D4, 0 0 20px #06B6D4, 0 0 30px #06B6D4;
+            transform: scale(1.05);
+        }
+
+        /* Custom glow effect for the contact button */
+        .glow-button:hover {
+            box-shadow: 0 0 15px rgba(52, 211, 153, 0.7); /* green-500 with opacity */
+        }
+
+        /* Glowing cursor styles */
+        #glowing-cursor {
+            position: fixed;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, rgba(52, 211, 153, 0.7) 0%, transparent 70%);
+            pointer-events: none;
+            transition: transform 0.1s ease-out;
+            transform: translate(-50%, -50%);
+            z-index: 100;
+        }
+
+        /* Hero section pattern and profile picture effect */
+        .hero-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24' fill='none' stroke='currentColor' stroke-width='0.5' stroke-linecap='round' stroke-linejoin='round' class='feather feather-activity'%3E%3Cpath d='M22 12h-4l-3 9L9 3l-3 9H2'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 50px;
+            opacity: 0.1;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .profile-picture-container {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .profile-picture-container:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 10px 20px rgba(45,212,191,0.5); /* A vibrant teal shadow */
+        }
+        
+        /* Neon text effect for the header */
+        .neon-text-effect {
+            color: #2dd4bf; /* A vibrant teal color */
+            text-shadow: 0 0 2px #2dd4bf, 0 0 5px #2dd4bf; /* Softer glow */
+        }
+
+        /* Typing cursor effect */
+        .typing-cursor {
+            border-right: 2px solid #2dd4bf;
+            animation: blinker 0.75s step-end infinite;
+        }
+
+        @keyframes blinker {
+            from, to { border-color: transparent; }
+            50% { border-color: #2dd4bf; }
+        }
+    </style>
+</head>
+<body class="antialiased text-gray-100">
+
+    <!-- Glowing Cursor Element -->
+    <div id="glowing-cursor"></div>
+
+    <!-- Header & Hero Section -->
+    <header class="relative overflow-hidden bg-gradient-to-r from-gray-900 to-gray-800 text-white py-12 md:py-24 shadow-xl">
+        <div class="hero-pattern"></div>
+        <div class="container mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center justify-between relative z-10">
+            <div class="text-center md:text-left mb-8 md:mb-0 w-full">
+                <!-- Dynamic Title Text with typing cursor -->
+                <h1 id="dynamic-title" class="text-3xl md:text-4xl font-extrabold mb-2 neon-text-effect"></h1>
+            </div>
+            <!-- Profile Picture Container -->
+            <div class="profile-picture-container rounded-full">
+                <img src="https://placehold.co/150x150/ffffff/1e293b?font=inter&text=LV" alt="Profile Picture" class="rounded-full w-40 h-40 md:w-48 md:h-48 shadow-lg border-4 border-gray-400">
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="container mx-auto px-4 py-12 md:px-8 space-y-16">
+
+        <!-- About Me Section -->
+        <section id="about" class="bg-gray-800 rounded-2xl shadow-lg p-6 md:p-10 transition-all duration-300 hover:shadow-xl hover:bg-gray-700 hover:scale-[1.01] border-2 border-transparent hover:border-green-500">
+            <h2 class="section-header mb-6 text-center text-teal-300">About Me</h2>
+            <p class="text-lg leading-relaxed text-gray-300">
+                To secure a challenging role as an AI/ML Engineer where I can apply my foundational knowledge in machine learning, data science principles, and programming to develop and deploy innovative AI solutions. I am eager to contribute to a forward-thinking team and expand my skills in a dynamic environment.
+            </p>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="bg-gray-800 rounded-2xl shadow-lg p-6 md:p-10 border-2 border-transparent transition-all duration-300 hover:shadow-xl hover:border-green-500">
+            <h2 class="section-header mb-6 text-center text-teal-300">Projects</h2>
+            <div class="grid gap-8">
+                <!-- Project Item 1 -->
+                <div class="p-6 bg-gray-900 rounded-xl border-l-4 border-teal-500 shadow-sm transition-all duration-300 hover:shadow-md hover:bg-gray-800 hover:border-green-500 hover:scale-[1.01]">
+                    <h3 class="text-2xl font-bold text-teal-300">
+                        Network Security: Machine Learning Project
+                    </h3>
+                    <p class="text-lg font-medium text-gray-400 mb-2">
+                        Tools: Python, Github, MongoDB
+                    </p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-300">
+                        <li>Developed a Network security ML project for addressing network security challenges using machine learning methodologies.</li>
+                        <li>The project has implemented Python for developing the core functionalities of a Network Security Machine Learning Project.</li>
+                        <li>The dataset used is phisingData.csv.</li>
+                    </ul>
+                    <a href="https://github.com/lakshay5750/Network_security_ml_project" target="_blank" class="inline-block mt-4 neon-button">
+                        View on GitHub
+                    </a>
+                </div>
+                <!-- Project Item 2 -->
+                <div class="p-6 bg-gray-900 rounded-xl border-l-4 border-teal-500 shadow-sm transition-all duration-300 hover:shadow-md hover:bg-gray-800 hover:border-green-500 hover:scale-[1.01]">
+                    <h3 class="text-2xl font-bold text-teal-300">
+                        Student Performance Project: End to end machine learning project
+                    </h3>
+                    <p class="text-lg font-medium text-gray-400 mb-2">
+                        Tools: Jupyter Notebook, Python, Python packages, Cat Boost
+                    </p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-300">
+                        <li>Students Perfomance.csv Dataset is used.</li>
+                    </ul>
+                    <a href="https://github.com/lakshay5750/Ml_project" target="_blank" class="inline-block mt-4 neon-button">
+                        View on GitHub
+                    </a>
+                </div>
+                <!-- Project Item 3 -->
+                <div class="p-6 bg-gray-900 rounded-xl border-l-4 border-teal-500 shadow-sm transition-all duration-300 hover:shadow-md hover:bg-gray-800 hover:border-green-500 hover:scale-[1.01]">
+                    <h3 class="text-2xl font-bold text-teal-300">
+                        Next Word Prediction: Deep Learning Project
+                    </h3>
+                    <p class="text-lg font-medium text-gray-400 mb-2">
+                        Tools: Jupyter Notebook, Python, Python packages, LSTM RNN, streamlit(deploy)
+                    </p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-300">
+                        <li>Dataset: Shakespeare's "Hamlet"</li>
+                    </ul>
+                    <a href="https://github.com/lakshay5750/Deep_learning_project_NEXT_WORD_PREDICTION" target="_blank" class="inline-block mt-4 neon-button">
+                        View on GitHub
+                    </a>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Education Section -->
+        <section id="education" class="bg-gray-800 rounded-2xl shadow-lg p-6 md:p-10 border-2 border-transparent transition-all duration-300 hover:shadow-xl hover:border-green-500">
+            <h2 class="section-header mb-6 text-center text-teal-300">Education</h2>
+            <div class="space-y-6">
+                <!-- Education Item 1 -->
+                <div class="p-6 bg-gray-900 rounded-2xl shadow-sm transition-all duration-300 hover:shadow-md hover:bg-gray-800 hover:border-l-4 hover:border-green-500 hover:scale-[1.01]">
+                    <h3 class="text-xl font-bold text-teal-300 mb-1">
+                        Bachelor in Technology
+                    </h3>
+                    <p class="text-lg font-medium text-gray-400 mb-1">
+                        Aligarh Muslim University
+                    </p>
+                    <p class="text-sm text-gray-500 mb-2">
+                        July 2023 - July 2027
+                    </p>
+                    <span class="inline-block bg-teal-500 text-white text-xs font-semibold px-3 py-1 rounded-full">CGPA: 8.57/10.00</span>
+                </div>
+                <!-- Education Item 2 -->
+                <div class="p-6 bg-gray-900 rounded-2xl shadow-sm transition-all duration-300 hover:shadow-md hover:bg-gray-800 hover:border-l-4 hover:border-green-500 hover:scale-[1.01]">
+                    <h3 class="text-xl font-bold text-teal-300 mb-1">
+                        12th CBSE Board
+                    </h3>
+                    <p class="text-lg font-medium text-gray-400 mb-1">
+                        Anglo Vedic Convent School
+                    </p>
+                    <p class="text-sm text-gray-500 mb-2">
+                        April 2022
+                    </p>
+                    <span class="inline-block bg-teal-500 text-white text-xs font-semibold px-3 py-1 rounded-full">Grade: 94%</span>
+                </div>
+                <!-- Education Item 3 -->
+                <div class="p-6 bg-gray-900 rounded-2xl shadow-sm transition-all duration-300 hover:shadow-md hover:bg-gray-800 hover:border-l-4 hover:border-green-500 hover:scale-[1.01]">
+                    <h3 class="text-xl font-bold text-teal-300 mb-1">
+                        10th CBSE Board
+                    </h3>
+                    <p class="text-lg font-medium text-gray-400 mb-1">
+                        Anglo Vedic Convent School
+                    </p>
+                    <p class="text-sm text-gray-500 mb-2">
+                        April 2020
+                    </p>
+                    <span class="inline-block bg-teal-500 text-white text-xs font-semibold px-3 py-1 rounded-full">Grade: 92.4%</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="bg-gray-800 rounded-2xl shadow-lg p-6 md:p-10">
+            <h2 class="section-header mb-6 text-center text-teal-300">Skills</h2>
+            <div class="flex flex-wrap gap-4 justify-center">
+                <span class="px-4 py-2 bg-gray-700 text-teal-300 text-sm font-medium rounded-full shadow-md transition-all duration-300 hover:bg-teal-500 hover:text-white hover:scale-105 cursor-pointer">C++</span>
+                <span class="px-4 py-2 bg-gray-700 text-teal-300 text-sm font-medium rounded-full shadow-md transition-all duration-300 hover:bg-teal-500 hover:text-white hover:scale-105 cursor-pointer">Python</span>
+                <span class="px-4 py-2 bg-gray-700 text-teal-300 text-sm font-medium rounded-full shadow-md transition-all duration-300 hover:bg-teal-500 hover:text-white hover:scale-105 cursor-pointer">Javascript</span>
+                <span class="px-4 py-2 bg-gray-700 text-teal-300 text-sm font-medium rounded-full shadow-md transition-all duration-300 hover:bg-teal-500 hover:text-white hover:scale-105 cursor-pointer">HTML</span>
+                <span class="px-4 py-2 bg-gray-700 text-teal-300 text-sm font-medium rounded-full shadow-md transition-all duration-300 hover:bg-teal-500 hover:text-white hover:scale-105 cursor-pointer">CSS</span>
+                <span class="px-4 py-2 bg-gray-700 text-teal-300 text-sm font-medium rounded-full shadow-md transition-all duration-300 hover:bg-teal-500 hover:text-white hover:scale-105 cursor-pointer">MongoDB</span>
+                <span class="px-4 py-2 bg-gray-700 text-teal-300 text-sm font-medium rounded-full shadow-md transition-all duration-300 hover:bg-teal-500 hover:text-white hover:scale-105 cursor-pointer">Pincone</span>
+                <span class="px-4 py-2 bg-gray-700 text-teal-300 text-sm font-medium rounded-full shadow-md transition-all duration-300 hover:bg-teal-500 hover:text-white hover:scale-105 cursor-pointer">Chroma</span>
+                <span class="px-4 py-2 bg-gray-700 text-teal-300 text-sm font-medium rounded-full shadow-md transition-all duration-300 hover:bg-teal-500 hover:text-white hover:scale-105 cursor-pointer">FIASS</span>
+                <span class="px-4 py-2 bg-gray-700 text-teal-300 text-sm font-medium rounded-full shadow-md transition-all duration-300 hover:bg-teal-500 hover:text-white hover:scale-105 cursor-pointer">Scikit-learn</span>
+                <span class="px-4 py-2 bg-gray-700 text-teal-300 text-sm font-medium rounded-full shadow-md transition-all duration-300 hover:bg-teal-500 hover:text-white hover:scale-105 cursor-pointer">matplotlib</span>
+                <span class="px-4 py-2 bg-gray-700 text-teal-300 text-sm font-medium rounded-full shadow-md transition-all duration-300 hover:bg-teal-500 hover:text-white hover:scale-105 cursor-pointer">seaborn</span>
+                <span class="px-4 py-2 bg-gray-700 text-teal-300 text-sm font-medium rounded-full shadow-md transition-all duration-300 hover:bg-teal-500 hover:text-white hover:scale-105 cursor-pointer">Hugging Face</span>
+                <span class="px-4 py-2 bg-gray-700 text-teal-300 text-sm font-medium rounded-full shadow-md transition-all duration-300 hover:bg-teal-500 hover:text-white hover:scale-105 cursor-pointer">vectorEmbeddings</span>
+                <span class="px-4 py-2 bg-gray-700 text-teal-300 text-sm font-medium rounded-full shadow-md transition-all duration-300 hover:bg-teal-500 hover:text-white hover:scale-105 cursor-pointer">pandas</span>
+                <span class="px-4 py-2 bg-gray-700 text-teal-300 text-sm font-medium rounded-full shadow-md transition-all duration-300 hover:bg-teal-500 hover:text-white hover:scale-105 cursor-pointer">numpy</span>
+                <span class="px-4 py-2 bg-gray-700 text-teal-300 text-sm font-medium rounded-full shadow-md transition-all duration-300 hover:bg-teal-500 hover:text-white hover:scale-105 cursor-pointer">tensorflow</span>
+                <span class="px-4 py-2 bg-gray-700 text-teal-300 text-sm font-medium rounded-full shadow-md transition-all duration-300 hover:bg-teal-500 hover:text-white hover:scale-105 cursor-pointer">keras</span>
+                <span class="px-4 py-2 bg-gray-700 text-teal-300 text-sm font-medium rounded-full shadow-md transition-all duration-300 hover:bg-teal-500 hover:text-white hover:scale-105 cursor-pointer">DeepLearning</span>
+                <span class="px-4 py-2 bg-gray-700 text-teal-300 text-sm font-medium rounded-full shadow-md transition-all duration-300 hover:bg-teal-500 hover:text-white hover:scale-105 cursor-pointer">Natural Language Proccessing</span>
+                <span class="px-4 py-2 bg-gray-700 text-teal-300 text-sm font-medium rounded-full shadow-md transition-all duration-300 hover:bg-teal-500 hover:text-white hover:scale-105 cursor-pointer">Transformers</span>
+                <span class="px-4 py-2 bg-gray-700 text-teal-300 text-sm font-medium rounded-full shadow-md transition-all duration-300 hover:bg-teal-500 hover:text-white hover:scale-105 cursor-pointer">Azure cloud storage</span>
+                <span class="px-4 py-2 bg-gray-700 text-teal-300 text-sm font-medium rounded-full shadow-md transition-all duration-300 hover:bg-teal-500 hover:text-white hover:scale-105 cursor-pointer">exploitory data analysis (EDA)</span>
+                <span class="px-4 py-2 bg-gray-700 text-teal-300 text-sm font-medium rounded-full shadow-md transition-all duration-300 hover:bg-teal-500 hover:text-white hover:scale-105 cursor-pointer">statistics</span>
+                <span class="px-4 py-2 bg-gray-700 text-teal-300 text-sm font-medium rounded-full shadow-md transition-all duration-300 hover:bg-teal-500 hover:text-white hover:scale-105 cursor-pointer">calculus</span>
+                <span class="px-4 py-2 bg-gray-700 text-teal-300 text-sm font-medium rounded-full shadow-md transition-all duration-300 hover:bg-teal-500 hover:text-white hover:scale-105 cursor-pointer">Data Structure And Algorithm</span>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="bg-gray-800 rounded-2xl shadow-lg p-6 md:p-10">
+            <h2 class="section-header mb-6 text-center text-teal-300">Contact</h2>
+            <div class="flex flex-col items-center gap-4 text-center">
+                <p class="text-lg text-gray-300">
+                    Feel free to get in touch with me!
+                </p>
+                <!-- Email Address -->
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=lakshyavarshney62@gmail.com" target="_blank" class="px-6 py-3 bg-teal-500 text-white font-bold rounded-full shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-green-500/50">
+                    lakshyavarshney62@gmail.com
+                </a>
+                <!-- Phone Number -->
+                <a href="tel:9520739975" class="px-6 py-3 bg-teal-500 text-white font-bold rounded-full shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-green-500/50">
+                    +91 9520739975
+                </a>
+                <p class="text-lg text-gray-300 mt-4">Connect with me on social media:</p>
+                <div class="flex gap-6 justify-center">
+                    <!-- LinkedIn Link -->
+                    <a href="https://www.linkedin.com/in/lakshay-varshney-07b7b22a5/" target="_blank" class="text-teal-300 hover:text-sky-300 transition-all duration-300 hover:-translate-y-1 hover:scale-110 hover:shadow-[0_0_15px_rgba(45,212,191,0.7)] rounded-full p-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2a2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    </a>
+                    <!-- GitHub Link -->
+                    <a href="https://github.com/lakshay5750" target="_blank" class="text-teal-300 hover:text-sky-300 transition-all duration-300 hover:-translate-y-1 hover:scale-110 hover:shadow-[0_0_15px_rgba(45,212,191,0.7)] rounded-full p-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77a5.07 5.07 0 0 0-1.53-2.61a5.07 5.07 0 0 0-2.61-1.53c-.35-3.14-1.54-6.44-7-6.44h-.35a3.37 3.37 0 0 0-2.61.94c-3.14.35-6.44 1.54-6.44 7a5.44 5.44 0 0 0-2.61 5.44c.35 3.14 1.54 6.44 7 6.44h.35a3.37 3.37 0 0 0 2.61-.94c.35 3.14 1.54 6.44 7 6.44z"></path></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white text-center py-6 mt-12">
+        <p class="text-sm">&copy; 2024 Lakshay Varshney. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const glowingCursor = document.getElementById('glowing-cursor');
+        document.addEventListener('mousemove', (e) => {
+            glowingCursor.style.left = e.clientX + 'px';
+            glowingCursor.style.top = e.clientY + 'px';
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const dynamicTitle = document.getElementById('dynamic-title');
+            const phrases = [
+                "Hi, I am Lakshay Varshney.",
+            ];
+            let phraseIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            const typingSpeed = 100;
+            const erasingSpeed = 50;
+            const pauseTime = 1500;
+
+            function typeWriterEffect() {
+                const currentPhrase = phrases[phraseIndex];
+                const currentText = dynamicTitle.textContent;
+                
+                if (!isDeleting && charIndex < currentPhrase.length) {
+                    // Typing
+                    dynamicTitle.textContent += currentPhrase.charAt(charIndex);
+                    charIndex++;
+                    setTimeout(typeWriterEffect, typingSpeed);
+                } else if (!isDeleting && charIndex === currentPhrase.length) {
+                    // Pause after typing
+                    isDeleting = true;
+                    setTimeout(typeWriterEffect, pauseTime);
+                } else if (isDeleting && charIndex > 0) {
+                    // Erasing
+                    dynamicTitle.textContent = currentPhrase.substring(0, charIndex - 1);
+                    charIndex--;
+                    setTimeout(typeWriterEffect, erasingSpeed);
+                } else if (isDeleting && charIndex === 0) {
+                    // Pause after erasing and then restart
+                    isDeleting = false;
+                    phraseIndex = (phraseIndex + 1) % phrases.length;
+                    setTimeout(typeWriterEffect, 500);
+                }
+            }
+
+            if (dynamicTitle) {
+                typeWriterEffect();
+            }
+        });
+    </script>
+</body>
+</html>
